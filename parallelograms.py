@@ -749,19 +749,35 @@ def main():
     # TODO: pass file as an arg in command line, need to update section 1 to remove .raw
     file = "C:\Directory\Filename.jpg"
 
-    # initialize variables - ADJUST THESE VALUES
+    ##################################################
+    # Initialize Variables - ADJUST THESE VALUES
+    ##################################################
     noiseThreshold = 0.05      # drop very low values to 0 prior to edge detection to remove noise
+    # sample1 0.05, sample2 0.05, sample3 0.05
     edgeThreshold = 0.14       # minimum edge strength required after nonmaxima suppression
+    # sample1 0.18, sample2 0.18, sample3 0.14
     pBinSize = 1               # normal to line distance from origin, used in accumulator
+    # sample1 2, sample2 2, sample3 1
     thetaBinSize = 2           # normal to line degrees from origin, used in accumulator
+    # sample1 4.5, sample2 4.5, sample3 2
     accumThreshold = 0.23      # threshold the accumulator and remove low key:value pairs from lines dictionary
+    # sample1 0.25, sample2 0.77, sample3 0.23
     shortLineThreshold = 23    # minimum number of edge pixels on a line for line to be acceptable
+    # sample1 18, sample2 42, sample3 23
     findLongShort = False      # display longest and shortest lines found
     minDist = 30               # minimum Euclidean distance for acceptable intersection points
+    # sample1 40, sample2 25, sample3 30
     angleTolerance = 8         # maximum angle tolerance (in degrees) for 'parallel' lines
+    # sample1 15, sample2 10, sample3 8
     minAngle = 75              # minimum angle of intersecting lines. the closer to 90 degrees, the more 'square' the parallelogram
+    # sample1 45, sample2 30, sample3 75
     minPoints = 22             # minimum number of edge pixels on a line between the (x,y) intersections with 2 other parallel lines
+    # sample1 35, sample2 40, sample3 22
 
+
+    ##################################################
+    # Magic
+    ##################################################
     # open and size the file
     img, originalRows, originalCols = openAndSizeFile(file)
 
@@ -804,6 +820,7 @@ def main():
 
     # draw the parallelograms
     finalArray = drawParallelLines(file, filteredArray, allLines, originalRows, originalCols, rows, cols)
+
 
 
 # call main()
